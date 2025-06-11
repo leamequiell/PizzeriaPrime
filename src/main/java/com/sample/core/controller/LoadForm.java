@@ -20,7 +20,7 @@ public class LoadForm extends HttpServlet{
 
 	private static String BEBIDA_FORM ="bebida/BebidaForm.jsp";
 
-	private static String POSTRE_FORM ="postre/postreForm.jsp";
+	private static String PIZZA_FORM ="pizza/pizzaForm.jsp";
 
 	private static String MENU_FORM ="menu/menuForm.jsp";
 
@@ -34,8 +34,8 @@ public class LoadForm extends HttpServlet{
 			req.getRequestDispatcher(PLATO_FORM).forward(req, resp);
 		}else if(req.getParameter("form").equals("bebidaForm") && session.getAttribute("CURRENT_USER") != null){
 			req.getRequestDispatcher(BEBIDA_FORM).forward(req, resp);
-		}else if (req.getParameter("form").equals("postreForm")&& session.getAttribute("CURRENT_USER") != null) {
-			req.getRequestDispatcher(POSTRE_FORM).forward(req, resp);
+		}else if (req.getParameter("form").equals("pizzaForm")&& session.getAttribute("CURRENT_USER") != null) {
+			req.getRequestDispatcher(PIZZA_FORM).forward(req, resp);
 		}else if(req.getParameter("form").equals("menuForm") && session.getAttribute("CURRENT_USER") != null) {
 			req.getRequestDispatcher(MENU_FORM).forward(req, resp);
 		}else {
