@@ -20,9 +20,9 @@ public class LoginDaolmp implements LoginDao {
 	private static final String queryFindByUserAndPassword = "SELECT id, usuario, password FROM usuario where usuario = ? and password = ?";
 
 	
-	private static final String queryList = "SELECT id, usuario, passowrd FROM usuario";
+	private static final String queryList = "SELECT id, usuario, password FROM usuario";
 	
-	private static final String queryConsultarUsuario = "SELECT id, usuario, contrasena FROM usuario where id=?";
+	private static final String queryConsultarUsuario = "SELECT id, usuario, password FROM usuario where id=?";
 
 	
 	
@@ -113,8 +113,13 @@ public class LoginDaolmp implements LoginDao {
 	} catch (Exception e) {
 		throw new Exception("No existe el usuario");
 	} finally {
-		st.close();
-		rs.close();
+		try {
+			st.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	}
@@ -139,8 +144,13 @@ public class LoginDaolmp implements LoginDao {
 		} catch (Exception e) {
 			throw new Exception("login incorrecto");
 		} finally {
-			st.close();
-			rs.close();
+			try {
+				st.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 				
 	}

@@ -20,7 +20,7 @@ public class Conexion {
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 				
 	private static final String USUARIO = "root";
-	private static final String PASSWORD = "admin";
+	private static final String PASSWORD = "";
 	
 
 	private static Conexion instance = Conexion.getInstance();
