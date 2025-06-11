@@ -3,12 +3,13 @@ package com.sample.core.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sample.core.enums.PedidoEnum;
+
 public class Pedido {
 
 	private List<Pedible> pedibles = new ArrayList<Pedible>();
 	
-	private int idMesa;
-	
+	private PedidoEnum estadoPizza;
 	
 	public List<Pedible> getPedibles() {
 		return pedibles;
@@ -30,12 +31,5 @@ public class Pedido {
 		return null;
 	}
 
-	public int getIdMesa() {
-		return idMesa;
-	}
-
-	public void setIdMesa(int idMesa) {
-		this.idMesa = idMesa;
-	}
 	
 }

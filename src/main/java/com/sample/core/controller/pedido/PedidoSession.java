@@ -52,7 +52,6 @@ public class PedidoSession extends HttpServlet{
 			//String idmesa = req.getParameter("idMesa");
 			int IdMesaInt  = Integer.parseInt(idMesa);
 			Pedido pedidoNuevo = new Pedido();
-			pedidoNuevo.setIdMesa(IdMesaInt);
 			misession.setAttribute("pedido", pedidoNuevo);
 			JsonObject json = new JsonObject();
 			json.addProperty("mensaje", "abrio un pedido");

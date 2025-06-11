@@ -163,6 +163,39 @@ public class LoginDaolmp implements LoginDao {
 		
 	}
 
+	public Usuario login(String usuario, String password) throws Exception {
+	    PreparedStatement st = null;
+	    ResultSet rs = null;
+	    try {
+	        st = this.conexion.dameConnection().prepareStatement(
+	            "SELECT id, usuario, password, rol FROM usuario WHERE usuario = ? AND password = ?"
+	        );
+
+	        st.setString(1, usuario);
+	        st.setString(2, password);
+
+	        rs = st.executeQuery();
+
+	        if (rs.next()) {
+	            return new Usuario(
+	                rs.getInt("id"),
+	                rs.getString("usuario"),
+	                rs.getString("password"),
+	                rs.getString("rol")
+	            );
+	        } else {
+	            throw new Exception("Usuario o contraseña incorrectos");
+	        }
+
+	    } finally {
+	        try {
+	            if (st != null) st.close();
+	            if (rs != null) rs.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
 
 
 	

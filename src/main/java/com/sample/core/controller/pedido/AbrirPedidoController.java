@@ -44,7 +44,6 @@ public class AbrirPedidoController extends HttpServlet {
 			 int numeroMesa = Integer.parseInt(numMesa);
 			 Mesa mesa =this.mesaService.findByNumber(numeroMesa);
 			 pedido = new Pedido();
-			 pedido.setIdMesa(mesa.getId());
 			 
 			 misession.setAttribute("pedido", pedido);
 		  }

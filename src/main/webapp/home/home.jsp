@@ -135,7 +135,12 @@
      
         </div>  
       </nav>
+	<!-- ejemplo en tu página -->
+<div class="solo-admin" style="display: none;">Botón solo para Admin</div>
+<div class="solo-cocinero" style="display: none;">Vista de cocina</div>
+<div class="solo-delivery" style="display: none;">Panel de delivery</div>
 
+<script src="<%=request.getContextPath()%>scripts/mostrarPorRol.js"></script>
 	<section id="sec">
 		<nav class="navbar navbar-light bg-light">
 		<a class="navbar-brand" href="#">Mesas</a>

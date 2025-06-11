@@ -10,6 +10,6 @@ public interface LoginService {
 	
 	public void consultarUsuarioYpassword(String usuario, String  password) throws Exception;
 
-	
+	public Usuario loginYObtenerUsuario(String usuario, String  password)throws Exception;
 	
 }

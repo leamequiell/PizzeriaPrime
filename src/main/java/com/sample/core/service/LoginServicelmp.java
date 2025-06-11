@@ -2,6 +2,7 @@ package com.sample.core.service;
 
 import com.sample.core.dao.LoginDao;
 import com.sample.core.dao.LoginDaolmp;
+import com.sample.core.domain.Usuario;
 
 public class LoginServicelmp implements LoginService{
 
@@ -17,7 +18,9 @@ public class LoginServicelmp implements LoginService{
 		loginDao.existeUsuarioPassword(usuario, password);
 	}
 
-
+    public Usuario loginYObtenerUsuario(String usuario, String password) throws Exception {
+        return ((LoginDaolmp) loginDao).login(usuario, password);
+    }
 
 
 

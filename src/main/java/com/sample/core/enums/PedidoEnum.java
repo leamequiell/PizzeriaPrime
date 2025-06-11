@@ -1,6 +1,11 @@
 package com.sample.core.enums;
 
 public enum PedidoEnum {
-	PENDIENTE,
-	FINALIZADO
+	SOLICITADO,
+	ENPREPARACION,
+	SINASIGNAR,
+	PENDIENTEENTREGA,
+	ENTREGADO,
+	NOENTRAGADO
+
 }

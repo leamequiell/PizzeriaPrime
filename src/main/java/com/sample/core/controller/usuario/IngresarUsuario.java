@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonObject;
+import com.sample.core.domain.Usuario;
 import com.sample.core.service.LoginService;
 import com.sample.core.service.LoginServicelmp;
 
@@ -26,7 +27,8 @@ public class IngresarUsuario extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String usuario = req.getParameter("usuario");
-		String password = req.getParameter("password");		
+		String password = req.getParameter("password");	
+		String rol = req.getParameter("rol");
 		
 		try {
 			
@@ -35,13 +37,13 @@ public class IngresarUsuario extends HttpServlet{
 			
 			if (password.length()== 0 || password == null)
 				throw new Exception("password vacio");
-					
-			usuarioservice.consultarUsuario(usuario);
 			
-			usuarioservice.consultarUsuarioYpassword(usuario, password);
-			
+			Usuario usuarioLogeado = usuarioservice.loginYObtenerUsuario(usuario, password);
 			HttpSession jsession = req.getSession(true);
-			jsession.setAttribute("CURRENT_USER", usuario);
+			
+			jsession.setAttribute("CURRENT_USER", usuarioLogeado.getUsuario());
+			jsession.setAttribute("CURRENT_ROL", usuarioLogeado.getRol());
+			
 			resp.addCookie(new Cookie("JSESSIONID", jsession.getId()));
 
 			setOutResponse("se logeo corretamente", resp, 200, "ok");
