@@ -29,7 +29,7 @@ public class PizzaEliminar extends HttpServlet {
         if (id == null || id.trim().isEmpty()) {
             req.setAttribute("mensajeError", "Error: La descripción no puede estar vacía.");
             req.getRequestDispatcher("/loadPizzaFormBaja").forward(req, resp);
-            return;     
+            return;     //xd
         }
         
         int idInt = Integer.parseInt(id);
