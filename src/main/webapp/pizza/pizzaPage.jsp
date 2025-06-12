@@ -1,110 +1,157 @@
-<%@page import="org.apache.jasper.tagplugins.jstl.core.Import"%>
-<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>    
-<%@page import="java.util.*"%>
 <%@page import="com.sample.core.domain.Pizza"%>
-    
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<title>Gestion de Pizzas</title>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+      crossorigin="anonymous">
 
+<!-- Fuente divertida tipo pizzería -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
 
-	<script src="<%=request.getContextPath() %>/scripts/jquery/jquery.min.js"></script>
-	<script src "<%=request.getContextPath() %>/scripts/formPizza.js"></script >
-	<script src "<%=request.getContextPath() %>/scripts/agregarPizza.js"></script>
-	
-	<script type="text/javascript">
-			var contextPath='<%=request.getContextPath()%>';
-	</script>
-	<script src="<%=request.getContextPath()%>/scripts/eliminarPizza.js"> </script>
-	
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+	body {
+	    font-family: 'Roboto', sans-serif;
+	    background-color: #fff8e1;
+	    padding: 20px;
+	}
 
+	h1, h2 {
+	    font-family: 'Pacifico', cursive;
+	    color: #d32f2f;
+	}
+
+	.container {
+	    background-color: rgba(255, 255, 255, 0.95);
+	    padding: 30px;
+	    border-radius: 20px;
+	    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+	}
+
+	.table {
+	    background-color: #fff;
+	    border-radius: 15px;
+	    overflow: hidden;
+	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	}
+
+	.btn-primary {
+	    background-color: #ffc107;
+	    color: #000;
+	    border: none;
+	}
+
+	.btn-primary:hover {
+	    background-color: #ff9800;
+	    color: white;
+	}
+
+	.btn-danger {
+	    background-color: #d32f2f;
+	    border: none;
+	}
+
+	.btn-danger:hover {
+	    background-color: #b71c1c;
+	}
+
+	.btn-warning {
+	    color: #000;
+	    border: none;
+	}
+
+	.modal-content {
+	    border-radius: 20px;
+	    background-color: #fff8e1;
+	}
+</style>
+
+<script src="<%=request.getContextPath()%>/scripts/jquery/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/formPizza.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/agregarPizza.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/eliminarPizza.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript">
+	var contextPath = '<%=request.getContextPath()%>';
+</script>
 </head>
+
 <body>
-
 <div class="container mt-4">
+	<h1>Pizzas Disponibles</h1>
 
+	<!-- Botón Nuevo -->
+	<div class="mb-3">
+		<a class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">➕ Nueva Pizza</a>
+	</div>
 
-<span>
-		<a class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" > Nuevo </a>
-</span>
+	<% List<Pizza> pizzas  = (List) request.getAttribute("pizzas"); %>
 
-<%  List<Pizza> pizzas  = (List) request.getAttribute("pizzas"); %>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">Titulo</th>
-      <th scope="col">Precio</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Operaciones</th>
-    </tr>
-  </thead>
-  <tbody>
-<%for(int i=0;i<pizzas.size();i++){
-	%>
-	 
-	<tr bgcolor="white">
-	<td><%=pizzas.get(i).getId() %></td>
-	<td><%=pizzas.get(i).getTitulo() %></td>
-	<td><%=pizzas.get(i).getPrecio()%></td>
-	<td><%=pizzas.get(i).getDescripcion()%></td>
-	<td> 
-		<a class="btn btn-primary"  href="<%=request.getContextPath()%>/loadPizzaForm?id=<%=pizzas.get(i).getId()%>" > editar </a>
-	 	<button class="btn btn-danger"  data-id="<%=pizzas.get(i).getId()%>"  onClick="myFunction(this)"> eliminar </button>
-	 	<button class="btn btn-warning agregarPedido"  data-id="<%=pizzas.get(i).getId()%>" onClick="agregarPedibles(this)" > Agregar a pedido </button>
-
-	 </td>
-<%		
-}
-%>
- </tbody>
-
-</table>
-
+	<!-- Tabla -->
+	<table class="table table-bordered text-center">
+		<thead class="table-warning">
+			<tr>
+				<th>ID</th>
+				<th>Titulo</th>
+				<th>Precio</th>
+				<th>Descripcion</th>
+				<th>Operaciones</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% for(Pizza pizza : pizzas) { %>
+			<tr>
+				<td><%= pizza.getId() %></td>
+				<td><%= pizza.getTitulo() %></td>
+				<td>$<%= pizza.getPrecio() %></td>
+				<td><%= pizza.getDescripcion() %></td>
+				<td>
+					<a class="btn btn-primary btn-sm" href="<%=request.getContextPath()%>/loadPizzaForm?id=<%=pizza.getId()%>">Editar</a>
+					<button class="btn btn-danger btn-sm" data-id="<%=pizza.getId()%>" onClick="myFunction(this)">Eliminar</button>
+					<button class="btn btn-warning btn-sm agregarPedido" data-id="<%=pizza.getId()%>" onClick="agregarPedibles(this)">Agregar a pedido</button>
+				</td>
+			</tr>
+		<% } %>
+		</tbody>
+	</table>
 </div>
-</body>
 
-<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script> 
+<!-- Modal Nueva Pizza -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content p-4">
+			<h2 class="text-center">Nueva Pizza</h2>
+			<form id="formPizza">
+				<div class="form-group">
+					<label for="titulo">Titulo</label>
+					<input type="text" class="form-control" id="titulo" name="titulo" placeholder=" ">
+				</div>
+				<div class="form-group">
+					<label for="descripcion">Descripcion</label>
+					<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="">
+				</div>
+				<div class="form-group">
+					<label for="precio">Precio</label>
+					<input type="text" class="form-control" id="precio" name="precio" placeholder="">
+				</div>
+				<button type="button" class="btn btn-primary btn-block" id="btn-confirmar">Guardar</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Scripts Bootstrap -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="js/jquery.validate.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath()%>/scripts/agregarPizza.js"> </script>
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    <div class="container mt-4" >
-			
-		<h1>Pizza</h1>
-		<form class="form" id="#formPizza">
-		  <div class="form-group">
-		    <label>titulo</label>
-		    <input type="text" class="form-control" id="titulo" name="titulo" aria-describedby="emailHelp" placeholder="Enter price">
-		  </div>
-		  <div class="form-group">
-		    <label>descripcion</label>
-		    <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Enter description">
-		  </div>
-		  <div class="form-group">
-		    <label>precio</label>
-		    <input type="text" class="form-control" id="precio" name="precio" aria-describedby="emailHelp" placeholder="Enter price">
-		  </div>
-		  <button type="button" class="btn btn-primary" id="btn-confirmar">Submit</button>
-		</form>
-		<br>
-		</div>
-   	
-    </div>
-  </div>
-</div>
-
-
-
-
+</body>
 </html>
