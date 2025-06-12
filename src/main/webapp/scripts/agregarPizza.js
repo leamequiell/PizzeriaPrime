@@ -17,11 +17,11 @@ $(function() {
 
 
               swalWithBootstrapButtons.fire({
-                title: "desea agregar el pizza?",
-                text: "confirma que desea agregar el nuevo pizza!",
+                title: "Desea agregar una Pizza?",
+                text: "Confirma que desea agregar la nueva Pizza!",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: "Yes, deseo agregrarlo!",
+                confirmButtonText: "Si, deseo agregrarla!",
                 cancelButtonText: "No, cancelar!",
                 reverseButtons: true
               }).then((result) => {
@@ -33,9 +33,9 @@ $(function() {
                     dataType: 'json',
                     success: function (data) {
                         Swal.fire({
-                            position: "Se agrego el pizza",
+                            position: "Se agrego la Pizza",
                             icon: "success",
-                            title: "El pizza nuevo se agrego correctamente",
+                            title: "La pizza nueva se agrego correctamente",
                             showConfirmButton: true,
                             timer: 3000
                           }).then((response)=>{
