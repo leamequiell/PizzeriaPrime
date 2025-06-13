@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Home Pizzeria</title>
+<title>AREA ADMIN</title>
 
 <!-- Bootstrap y scripts -->
 <link rel="stylesheet"
@@ -170,7 +170,11 @@ body {
 		<script src="<%=request.getContextPath()%>/scripts/mostrarPorRol.js"></script>
 
 		<!-- Mesas -->
-	
+		<section id="sec">
+			<h2 class="section-title">Mesas</h2>
+			<div class="card-group homeitem" id="contenedorMesas"></div>
+		</section>
+
 		<!-- Pedidos -->
 		<section id="sec-pedidos">
 			<h2 class="section-title">Pedidos</h2>

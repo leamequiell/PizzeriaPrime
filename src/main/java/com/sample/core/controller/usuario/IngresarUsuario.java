@@ -51,6 +51,10 @@ public class IngresarUsuario extends HttpServlet{
 		} catch (Exception e) {
 			setOutResponse(e.getMessage(), resp, 400, "error");
 		}
+		
+		
+		
+		
 
 	}
 	
