@@ -14,6 +14,7 @@ function agregarPedido(data) {
 	}).then((result) => {
 		if (result.isConfirmed) {
 
+
 			$.ajax({
 				type: "get",
 				url: contextPath + "/abrirPedido?idProducto=" + id + '&idTipo=' + tipo,
@@ -31,9 +32,6 @@ function agregarPedido(data) {
 
 		}
 	});
-
-
-
 
 
 }

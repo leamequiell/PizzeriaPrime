@@ -7,6 +7,8 @@ import com.sample.core.enums.PedidoEnum;
 
 public class Pedido {
 
+	private int id;
+	
 	private List<Pedible> pedibles = new ArrayList<Pedible>();
 	
 	private PedidoEnum estadoPizza;
@@ -30,6 +32,20 @@ public class Pedido {
 	public String getTicket() {
 		return null;
 	}
+	public int getId() {
+	    return id;
+	}
 
+	public void setId(int id) {
+	    this.id = id;
+	}
+
+	public PedidoEnum getEstadoPizza() {
+	    return estadoPizza;
+	}
+
+	public void setEstadoPizza(PedidoEnum estadoPizza) {
+	    this.estadoPizza = estadoPizza;
+	}
 	
 }
