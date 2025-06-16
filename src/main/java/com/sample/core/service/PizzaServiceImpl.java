@@ -20,7 +20,7 @@ public class PizzaServiceImpl implements PizzaService{
 	}
 
 	public void crearPizza(String titulo, String descripcion, int precio) throws Exception {
-		pizzaDao.save(titulo, descripcion, precio);
+		pizzaDao.save(titulo, descripcion, precio); 
 	}
 	
 	public void delete(int id) throws Exception{
