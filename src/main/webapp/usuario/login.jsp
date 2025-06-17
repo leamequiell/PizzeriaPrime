@@ -1,4 +1,4 @@
-           <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	           <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,8 +77,16 @@
 				<label for="password">Contraseña</label>
 				<input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña">
 			</div>
-			<button type="button" class="btn btn-pizza" id="btn-login">Entrar 🍕</button>
-		</form>
-	</div>
+<!-- ... código anterior igual ... -->
+        <button type="button" class="btn btn-pizza" id="btn-login">Entrar 🍕</button>
+        <button type="button" class="btn btn-pizza mt-3" onclick="irComoInvitado()">Entrar como visitante 👤</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+    function irComoInvitado() {
+        window.location.href = contextPath + "/home/home.jsp";
+    }
+</script>
 </body>
 </html>

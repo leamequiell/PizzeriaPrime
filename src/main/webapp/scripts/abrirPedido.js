@@ -3,7 +3,7 @@ $(function() {
     $("#btn-abrir-pedido").click(function (e) {
             e.preventDefault(); 
                 $.ajax({
-                    url: contextPath + '/abrirPedido',
+                    url: contextPath + '/abrirPedidoP',
                     dataType: 'json',
                     success: function (data) {
                         alert(data.mensaje   );

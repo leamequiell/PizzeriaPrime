@@ -73,6 +73,7 @@
 <script src="<%=request.getContextPath()%>/scripts/jquery/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/formPizza.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/agregarPizza.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/agregarPedido.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/eliminarPizza.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -113,7 +114,7 @@
 				<td>
 					<a class="btn btn-primary btn-sm" href="<%=request.getContextPath()%>/loadPizzaForm?id=<%=pizza.getId()%>">Editar</a>
 					<button class="btn btn-danger btn-sm" data-id="<%=pizza.getId()%>" onClick="myFunction(this)">Eliminar</button>
-					<button class="btn btn-warning btn-sm agregarPedido" data-id="<%=pizza.getId()%>" onClick="agregarPedibles(this)">Agregar a pedido</button>
+					<button class="btn btn-warning btn-sm agregarPedido" data-id="<%=pizza.getId()%>" onClick="agregarPedido(this)">Agregar a pedido</button>
 				</td>
 			</tr>
 		<% } %>

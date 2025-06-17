@@ -25,11 +25,17 @@ public class ConfirmarPedidoPController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	    
-		HttpSession misession= req.getSession(true);	
+		System.out.println("Se está confirmando el pedido");
 		
+		
+		HttpSession misession= req.getSession(true);	
 		Pedido pedido =	(Pedido) misession.getAttribute("pedido");
-
+		
+		if (pedido == null) {
+		    System.out.println("No hay pedido en la sesión");
+		    return;
+		}
+		
 		try {
 			pedidoService.save(pedido);
 		} catch (Exception e) {

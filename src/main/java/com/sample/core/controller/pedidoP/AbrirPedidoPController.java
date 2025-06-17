@@ -15,7 +15,7 @@ import com.sample.core.domain.Plato;
 import com.sample.core.service.PizzaService;
 import com.sample.core.service.PizzaServiceImpl;
 
-@WebServlet(urlPatterns = "/agregarPedidoP")
+@WebServlet(urlPatterns = "/abirPedidoP")
 public class AbrirPedidoPController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

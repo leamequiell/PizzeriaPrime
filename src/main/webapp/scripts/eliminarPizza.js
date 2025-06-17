@@ -7,8 +7,8 @@ function myFunction(data){
     
     //agregamos sweet alert
     Swal.fire({
-        title: "Esta seguro de Eliminar el Plato?",
-        text: "El plato asera eliminado de la base!",
+        title: "Esta seguro de Eliminar el Pizza?",
+        text: "El pizza asera eliminado de la base!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -19,13 +19,13 @@ function myFunction(data){
             //agregamos ajax
             $.ajax({
                 type: "get",
-                url: contextPath+"/PlatoEliminar?id="+value,
+                url: contextPath+"/PizzaEliminar?id="+value,
                 dataType: "json",
                 success: function (response) {
                     //agregamos sweet alert
                     Swal.fire({
                         title: "Eliminado!",
-                        text: "El plato se elimino correctamente.",
+                        text: "El pizza se elimino correctamente.",
                         icon: "success",
                         showConfirmButton: true,
                       }).then(response =>{
@@ -44,18 +44,11 @@ function myFunction(data){
       });
 }
 
-
-f
-
-
-
-
-
 function agregarPedibles(datos) {
         id =  $(datos).attr("data-id");
         
         var data={
-          tipo : "PLATO",
+          tipo : "Pizza",
           idProducto : id
         }
 

@@ -17,8 +17,8 @@ $(function() {
 
 
               swalWithBootstrapButtons.fire({
-                title: "desea agregar el plato?",
-                text: "confirma que desea agregar el nuevo plato!",
+                title: "desea agregar el pizza?",
+                text: "confirma que desea agregar el nuevo pizza!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonText: "Yes, deseo agregrarlo!",
@@ -29,18 +29,18 @@ $(function() {
                    //si confirmamos lanzamos la peticion ajax.
                    
                    $.ajax({
-                    url: contextPath + '/CrearPlato',
+                    url: contextPath + '/CrearPizza',
                     dataType: 'json',
                     success: function (data) {
                         Swal.fire({
-                            position: "Se agrego el plato",
+                            position: "Se agrego el pizza",
                             icon: "success",
-                            title: "El plato nuevo se agrego correctamente",
+                            title: "El pizza nuevo se agrego correctamente",
                             showConfirmButton: true,
                             timer: 3000
                           }).then((response)=>{
                             if (result.isConfirmed) {
-                                window.location.href=contextPath+'/LeerDatosPlato';
+                                window.location.href=contextPath+'/LeerDatosPizza';
                             }
                           })
                     },

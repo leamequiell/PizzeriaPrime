@@ -22,5 +22,6 @@ public enum TipoEnum {
 	
 	public static TipoEnum obtenerTipo(String tipo){
 		return TipoEnum.valueOf(tipo);
+		
 	}
 }

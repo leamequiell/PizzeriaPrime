@@ -17,7 +17,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.sample.core.domain.Pedido;
 
-@WebServlet(urlPatterns = "/pedidosP")
+@WebServlet(urlPatterns = "/consultarPedidosP")
 
 public class consultarPedidoPController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
