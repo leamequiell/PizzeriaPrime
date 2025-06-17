@@ -39,5 +39,4 @@ document.addEventListener("DOMContentLoaded", function () {
 	    document.title = "Home Invitado - Pizzería";
 	  }
 	})
-
 });
