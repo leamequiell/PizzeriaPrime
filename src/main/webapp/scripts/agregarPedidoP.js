@@ -2,7 +2,7 @@ $(document).ready(function () {
     $(document).on("click", ".btn-agregar-pedido", function () {
         let idPizza = $(this).data("id");
 
-        console.log("🍕 Agregando pedido con pizza ID:", idPizza);
+        console.log("Agregando pedido con pizza ID:", idPizza);
 
         Swal.fire({
             title: "¿Agregar esta pizza al pedido?",
@@ -18,7 +18,7 @@ $(document).ready(function () {
                     type: "POST",
                     url: contextPath + "/crearPedidoP",
                     data: {
-                        idProducto: idPizza  // nombre que el servlet espera
+                        idPizza: idPizza  // nombre que el servlet espera
                     },
                     dataType: "json",
                     success: function (response) {

@@ -81,23 +81,6 @@ function myFunction(data) {
 	});
 
 }
-
-
-
-
-
-f
-
-
-
-
-
-
-
-
-
-
-
 function agregarPedibles(datos) {
 
 	id = $(datos).attr("data-id");

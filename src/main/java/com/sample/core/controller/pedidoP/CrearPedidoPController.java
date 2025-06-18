@@ -7,6 +7,8 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import com.sample.core.dao.PedidoPDaolmp;
+import com.sample.core.enums.PedidoEnum;
 
 @WebServlet("/crearPedidoP")
 public class CrearPedidoPController extends HttpServlet {
@@ -20,10 +22,14 @@ public class CrearPedidoPController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         try {
-            String param = request.getParameter("idProducto");
+            String param = request.getParameter("idPizza");
             int pizzaId = Integer.parseInt(param);
 
-            // Obtener o crear lista de pedido en sesión
+            // Guardar en DB
+            PedidoPDaolmp pedidoDao = new PedidoPDaolmp();
+            pedidoDao.crearPedido(pizzaId, PedidoEnum.SOLICITADO.name()); // ejemplo de estado
+
+            // Agregar a sesión también (opcional)
             HttpSession session = request.getSession();
             List<Integer> pedido = (List<Integer>) session.getAttribute("pedido");
 
@@ -34,10 +40,9 @@ public class CrearPedidoPController extends HttpServlet {
 
             pedido.add(pizzaId);
 
-            // Devolver respuesta JSON de éxito
             response.getWriter().write("{\"success\": true}");
         } catch (Exception e) {
-            // En caso de error
+            e.printStackTrace();
             response.getWriter().write("{\"success\": false}");
         }
     }

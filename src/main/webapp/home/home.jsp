@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
 
+<%@ page import="java.util.List" %>
+<%@ page import="com.sample.core.domain.Pedido" %>
+
 <%
 String rol = (String) session.getAttribute("CURRENT_ROL");
 if (rol == null) {
@@ -20,7 +23,6 @@ if (rol == null) {
 <script src="<%=request.getContextPath()%>/scripts/jquery/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/scripts-barcito.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/logout.js"></script>
-<script src="<%=request.getContextPath()%>/scripts/mesasDisponibles.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 
@@ -158,27 +160,51 @@ body {
 
     <script src="<%=request.getContextPath()%>/scripts/mostrarPorRol.js"></script>
 
-    <section id="sec-pedidos">
-        <h2 class="section-title">Pedidos</h2>
-        <div class="recent_order">
-            <table class="table table-bordered bg-white">
-                <thead class="table-warning text-center">
-                    <tr>
-                        <th>Título</th>
-                        <th>Precio</th>
-                        <th>Ver detalles</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>test</td>
-                        <td>test</td>
-                        <td class="detalles"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+<section id="sec-pedidos">
+    <h2 class="section-title">Pedidos</h2>
+    <div class="recent_order">
+        <%
+            List<Pedido> pedidos = (List<Pedido>) request.getAttribute("pedidos");
+            if (pedidos != null) {
+        %>
+            <p>Pedidos recibidos: <%= pedidos.size() %></p>
+
+            <% if (!pedidos.isEmpty()) { %>
+                <table class="table table-bordered bg-white">
+                    <thead class="table-warning text-center">
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Precio</th>
+                            <th>Ver detalles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            for (Pedido pedido : pedidos) {
+                        %>
+                        <tr>
+                            <td><%= pedido.getEstadoPizza() %></td>
+                            <td><%= pedido.getId() %></td>
+                            <td><a href="#">Detalles</a></td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p class="text-center">No hay pedidos para mostrar.</p>
+            <% } %>
+
+        <%
+            } else {
+        %>
+            <p class="text-center">No se recibio la lista de pedidos.</p>
+        <%
+            }
+        %>
+    </div>
+</section>
 
     <% if (!"cocinero".equals(rol) && !"delivery".equals(rol)) { %>
     <section id="sec-menus">

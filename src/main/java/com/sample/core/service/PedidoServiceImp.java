@@ -4,6 +4,7 @@ import java.util.List;
 import com.sample.core.dao.PedidoDao;
 import com.sample.core.dao.PedidoDaoImp;
 import com.sample.core.dao.PedidoPDao;
+import com.sample.core.dao.PedidoPDaolmp;
 import com.sample.core.domain.Pedido;
 import com.sample.core.enums.PedidoEnum;
 
@@ -11,10 +12,10 @@ import com.sample.core.enums.PedidoEnum;
 
 public class PedidoServiceImp implements PedidoService {
 
-	private PedidoDao pedidoDao = new PedidoDaoImp();
+	private PedidoPDao pedidoDao = new PedidoPDaolmp();
 
 	@Override
-    public List<Pedido> listarPedidos() throws Exception {
+    public List<Pedido> listarPedidos() throws Exception {	
         return pedidoDao.list();
     }
 	
