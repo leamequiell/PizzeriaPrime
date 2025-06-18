@@ -55,5 +55,12 @@ public class Conexion {
 	       return instance;
 	   }
 
+
+
+	 public static Connection getConexion() throws SQLException {
+		    return DriverManager.getConnection(URL + "/" + DBNAME + TIMEZONE, USUARIO, PASSWORD);
+		}
+
+
 	 
 }

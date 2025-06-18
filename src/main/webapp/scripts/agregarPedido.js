@@ -1,6 +1,6 @@
-function agregarPedido(data) {
+function agregarPedidoP(data) {
 	let id = $(data).attr("data-id");
-	let tipo = $(data).attr("data-estado"); // <- esto cambia
+	let tipo = $(data).attr("data-tipo");
 
 	Swal.fire({
 		title: "¿Estás seguro de agregar el nuevo plato?",
@@ -13,8 +13,8 @@ function agregarPedido(data) {
 	}).then((result) => {
 		if (result.isConfirmed) {
 			$.ajax({
-				type: "post", // <- esto cambia
-				url: contextPath + "/abrirPedidoP?idProducto=" + id + '&estadoPizza=' + tipo, // <- esto cambia
+				type: "post",
+				url: contextPath + "/agregarPedidoP?idProducto=" + id + "&estadoPizza=" + tipo,
 				dataType: "json",
 				success: function(response) {
 					Swal.fire({
@@ -22,7 +22,7 @@ function agregarPedido(data) {
 						text: "El nuevo plato se agregó correctamente.",
 						icon: "success"
 					});
-					window.location.href = contextPath + '/pizza/pizzaPage';	
+					window.location.href = contextPath + "/pizza/pizzaPage";
 				},
 				error: function(err) {
 					console.error("Error al agregar pedido:", err);
@@ -31,3 +31,4 @@ function agregarPedido(data) {
 		}
 	});
 }
+

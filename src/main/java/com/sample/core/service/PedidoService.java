@@ -1,10 +1,7 @@
 package com.sample.core.service;
 
-<<<<<<< HEAD
 import java.util.List;
 
-=======
->>>>>>> 1a365fc9906dfe7b96dbf54251af780befbb444f
 import com.sample.core.domain.Pedido;
 import com.sample.core.enums.PedidoEnum;
 
